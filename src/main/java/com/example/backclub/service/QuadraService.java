@@ -1,6 +1,6 @@
-package com.example.backclub.domain.service;
+package com.example.backclub.service;
 
-import com.example.backclub.domain.entity.Quadra;
+import com.example.backclub.entity.Quadra;
 import com.example.backclub.repository.QuadraRepository;
 import org.springframework.stereotype.Service;
 

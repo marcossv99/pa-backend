@@ -1,12 +1,11 @@
-package com.example.backclub.domain.dto.response;
+package com.example.backclub.dto.request;
 
 import lombok.Data;
 
 import java.util.List;
 
 @Data
-public class ReservaResponseDto {
-    private Long id;
+public class ReservaRequestDto {
     private Long usuarioId;
     private Long quadraId;
     private Long horarioId;

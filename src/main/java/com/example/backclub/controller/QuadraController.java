@@ -1,10 +1,11 @@
-package com.example.backclub.domain.controller;
+package com.example.backclub.controller;
 
-import com.example.backclub.domain.dto.request.QuadraRequestDto;
-import com.example.backclub.domain.dto.response.QuadraResponseDto;
-import com.example.backclub.domain.entity.Quadra;
-import com.example.backclub.domain.mapper.QuadraMapper;
-import com.example.backclub.domain.service.QuadraService;
+import com.example.backclub.dto.request.QuadraRequestDto;
+import com.example.backclub.dto.response.QuadraResponseDto;
+import com.example.backclub.entity.Quadra;
+import com.example.backclub.mapper.QuadraMapper;
+import com.example.backclub.service.QuadraService;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

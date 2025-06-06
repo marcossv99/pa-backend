@@ -1,4 +1,4 @@
-package com.example.backclub.domain.entity;
+package com.example.backclub.entity;
 
 import jakarta.persistence.*;
 import lombok.*;

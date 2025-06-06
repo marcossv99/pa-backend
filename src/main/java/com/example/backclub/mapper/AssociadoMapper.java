@@ -1,11 +1,11 @@
-package com.example.backclub.domain.mapper;
+package com.example.backclub.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
 
-import com.example.backclub.domain.dto.request.AssociadoRequestDto;
-import com.example.backclub.domain.dto.response.AssociadoResponseDto;
-import com.example.backclub.domain.entity.Associado;
+import com.example.backclub.dto.request.AssociadoRequestDto;
+import com.example.backclub.dto.response.AssociadoResponseDto;
+import com.example.backclub.entity.Associado;
 
 @Mapper(componentModel = "spring")
 public interface AssociadoMapper {

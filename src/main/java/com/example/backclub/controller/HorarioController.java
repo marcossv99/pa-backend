@@ -1,12 +1,13 @@
-package com.example.backclub.domain.controller;
+package com.example.backclub.controller;
 
-import com.example.backclub.domain.dto.request.HorarioRequestDto;
-import com.example.backclub.domain.dto.response.HorarioResponseDto;
-import com.example.backclub.domain.entity.Horario;
-import com.example.backclub.domain.entity.Quadra;
-import com.example.backclub.domain.mapper.HorarioMapper;
-import com.example.backclub.domain.service.HorarioService;
-import com.example.backclub.domain.service.QuadraService;
+import com.example.backclub.dto.request.HorarioRequestDto;
+import com.example.backclub.dto.response.HorarioResponseDto;
+import com.example.backclub.entity.Horario;
+import com.example.backclub.entity.Quadra;
+import com.example.backclub.mapper.HorarioMapper;
+import com.example.backclub.service.HorarioService;
+import com.example.backclub.service.QuadraService;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

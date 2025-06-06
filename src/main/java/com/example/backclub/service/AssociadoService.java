@@ -1,10 +1,10 @@
-package com.example.backclub.domain.service;
+package com.example.backclub.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
 
-import com.example.backclub.domain.entity.Associado;
+import com.example.backclub.entity.Associado;
 import com.example.backclub.repository.AssociadoRepository;
 
 import java.util.List;

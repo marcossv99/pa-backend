@@ -1,14 +1,14 @@
-package com.example.backclub.domain.controller;
+package com.example.backclub.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.backclub.domain.dto.request.AssociadoRequestDto;
-import com.example.backclub.domain.dto.response.AssociadoResponseDto;
-import com.example.backclub.domain.entity.Associado;
-import com.example.backclub.domain.mapper.AssociadoMapper;
-import com.example.backclub.domain.service.AssociadoService;
+import com.example.backclub.dto.request.AssociadoRequestDto;
+import com.example.backclub.dto.response.AssociadoResponseDto;
+import com.example.backclub.entity.Associado;
+import com.example.backclub.mapper.AssociadoMapper;
+import com.example.backclub.service.AssociadoService;
 
 import java.util.List;
 

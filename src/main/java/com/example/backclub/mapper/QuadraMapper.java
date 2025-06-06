@@ -1,11 +1,11 @@
-package com.example.backclub.domain.mapper;
+package com.example.backclub.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
 
-import com.example.backclub.domain.dto.request.QuadraRequestDto;
-import com.example.backclub.domain.dto.response.QuadraResponseDto;
-import com.example.backclub.domain.entity.Quadra;
+import com.example.backclub.dto.request.QuadraRequestDto;
+import com.example.backclub.dto.response.QuadraResponseDto;
+import com.example.backclub.entity.Quadra;
 
 @Mapper(componentModel = "spring")
 public interface QuadraMapper {

@@ -1,14 +1,14 @@
-package com.example.backclub.domain.dto.response;
+package com.example.backclub.dto.request;
 
 import lombok.Data;
 
 import java.time.LocalDate;
 
 @Data
-public class HorarioResponseDto {
-    private Long id;
+public class HorarioRequestDto {
     private LocalDate data;
     private float horaInicio;
     private float horaFim;
     private Long quadraId;
 }
+

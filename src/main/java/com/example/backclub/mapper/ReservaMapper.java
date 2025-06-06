@@ -1,14 +1,14 @@
-package com.example.backclub.domain.mapper;
+package com.example.backclub.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-import com.example.backclub.domain.dto.request.ReservaRequestDto;
-import com.example.backclub.domain.dto.response.ReservaResponseDto;
-import com.example.backclub.domain.entity.Associado;
-import com.example.backclub.domain.entity.Horario;
-import com.example.backclub.domain.entity.Quadra;
-import com.example.backclub.domain.entity.Reserva;
+import com.example.backclub.dto.request.ReservaRequestDto;
+import com.example.backclub.dto.response.ReservaResponseDto;
+import com.example.backclub.entity.Associado;
+import com.example.backclub.entity.Horario;
+import com.example.backclub.entity.Quadra;
+import com.example.backclub.entity.Reserva;
 
 @Mapper(componentModel = "spring")
 public interface ReservaMapper {

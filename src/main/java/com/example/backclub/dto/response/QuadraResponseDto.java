@@ -1,4 +1,4 @@
-package com.example.backclub.domain.dto.response;
+package com.example.backclub.dto.response;
 
 import lombok.Data;
 

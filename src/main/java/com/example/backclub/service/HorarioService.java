@@ -1,6 +1,6 @@
-package com.example.backclub.domain.service;
+package com.example.backclub.service;
 
-import com.example.backclub.domain.entity.Horario;
+import com.example.backclub.entity.Horario;
 import com.example.backclub.repository.HorarioRepository;
 import org.springframework.stereotype.Service;
 
