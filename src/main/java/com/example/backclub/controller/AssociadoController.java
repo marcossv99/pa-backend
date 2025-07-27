@@ -1,12 +1,10 @@
 package com.example.backclub.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.backclub.dto.request.AssociadoRequestDto;
 import com.example.backclub.dto.response.AssociadoResponseDto;
-import com.example.backclub.domain.entity.Associado;
 import com.example.backclub.mapper.AssociadoMapper;
 import com.example.backclub.service.AssociadoService;
 
@@ -14,66 +12,75 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/associados")
+@CrossOrigin(origins = "http://localhost:4200")
 public class AssociadoController {
-    @Autowired
-    private AssociadoService associadoService;
+    private final AssociadoService associadoService;
+    private final AssociadoMapper associadoMapper;
 
-    @Autowired
-    private AssociadoMapper associadoMapper;
+    public AssociadoController(AssociadoService associadoService, AssociadoMapper associadoMapper) {
+        this.associadoService = associadoService;
+        this.associadoMapper = associadoMapper;
+    }
 
     @GetMapping
-    public List<AssociadoResponseDto> getAll() {
-        return associadoService.findAll().stream().map(associadoMapper::toResponse).toList();
+    public ResponseEntity<List<AssociadoResponseDto>> getAll() {
+        return handle(() -> {
+            List<AssociadoResponseDto> response = associadoService.findAll().stream()
+                .map(associadoMapper::toResponse)
+                .toList();
+            return ResponseEntity.ok(response);
+        });
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<AssociadoResponseDto> getById(@PathVariable Long id) {
-        return associadoService.findById(id)
-                .map(associadoMapper::toResponse)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
-    }
-
-    @PostMapping
-    public AssociadoResponseDto create(@RequestBody AssociadoRequestDto dto) {
-        Associado associado = associadoMapper.toEntity(dto);
-        Associado salvo = associadoService.save(associado);
-        return associadoMapper.toResponse(salvo);
+        return handle(() -> associadoService.findById(id)
+            .map(associadoMapper::toResponse)
+            .map(ResponseEntity::ok)
+            .orElse(ResponseEntity.notFound().build())
+        );
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
-        associadoService.delete(id);
-        return ResponseEntity.noContent().build();
+        return handle(() -> {
+            associadoService.delete(id);
+            return ResponseEntity.noContent().build();
+        });
     }
 
-    @RestController
-    @RequestMapping("/api/auth")
-    public static class AuthController {
+    @PutMapping("/{id}")
+    public ResponseEntity<AssociadoResponseDto> update(@PathVariable Long id, @RequestBody AssociadoRequestDto dto) {
+        return handle(() -> associadoService.findById(id)
+            .map(existing -> {
+                associadoMapper.updateEntityFromDto(dto, existing);
+                return associadoService.save(existing);
+            })
+            .map(associadoMapper::toResponse)
+            .map(ResponseEntity::ok)
+            .orElse(ResponseEntity.notFound().build())
+        );
+    }
 
-        @Autowired
-        private AssociadoService associadoService;
+    @PostMapping
+    public ResponseEntity<AssociadoResponseDto> create(@RequestBody AssociadoRequestDto dto) {
+        return handle(() -> {
+            var associado = associadoMapper.toEntity(dto);
+            var saved = associadoService.save(associado);
+            return ResponseEntity.ok(associadoMapper.toResponse(saved));
+        });
+    }
 
-        @PostMapping("/login")
-        public ResponseEntity<?> login(@RequestBody AssociadoRequestDto associadoRequestDto) {
-            // Busca por email OU cpf
-            String login = null;
-            if (associadoRequestDto.getCpf() != null && !associadoRequestDto.getCpf().isEmpty()) {
-                login = associadoRequestDto.getCpf();
-            } else if (associadoRequestDto.getEmail() != null && !associadoRequestDto.getEmail().isEmpty()) {
-                login = associadoRequestDto.getEmail();
-            }
-            Associado associado = null;
-            if (login != null) {
-                associado = associadoService.findByCpfOrEmail(login);
-            }
-            if (associado == null) {
-                return ResponseEntity.status(401).body("Usuário não encontrado");
-            }
-            if (!associado.getSenha().equals(associadoRequestDto.getSenha())) {
-                return ResponseEntity.status(401).body("Senha incorreta");
-            }
-            return ResponseEntity.ok("Login realizado com sucesso!");
+    private <T> ResponseEntity<T> handle(ControllerAction<T> action) {
+        try {
+            return action.execute();
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().build();
         }
+    }
+
+    @FunctionalInterface
+    private interface ControllerAction<T> {
+        ResponseEntity<T> execute();
     }
 }

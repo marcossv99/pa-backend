@@ -8,5 +8,4 @@ public class QuadraRequestDto {
     private String modalidade;
     private int qtdPessoas;
     private String img;
-    private boolean isDisponivel;
 }

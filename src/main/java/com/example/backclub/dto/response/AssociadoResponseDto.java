@@ -1,6 +1,7 @@
 package com.example.backclub.dto.response;
 
 import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Data
 public class AssociadoResponseDto {
@@ -9,5 +10,7 @@ public class AssociadoResponseDto {
     private String email;
     private String cpf;
     private String telefone;
+    
+    @JsonProperty("isAdmin")
     private boolean isAdmin;
 }

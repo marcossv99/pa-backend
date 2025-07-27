@@ -1,12 +1,12 @@
 services:
   db:
     image: postgres:15
-    container_name: postgres-reservas
+    container_name: postgres-backclub
     restart: always
     environment:
-      POSTGRES_USER: pauloaabrantes
-      POSTGRES_PASSWORD: p1a2u3l4o5..docker
-      POSTGRES_DB: reserva_quadras
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123
+      POSTGRES_DB: backclub_db
     ports:
       - "5432:5432"
     volumes:

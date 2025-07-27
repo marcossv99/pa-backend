@@ -32,7 +32,20 @@ public class AssociadoService {
         associadoRepository.deleteById(id);
     }
 
-    public Associado findByCpfOrEmail(String login) {
+    public Optional<Associado> findByCpfOrEmail(String login) {
         return associadoRepository.findByCpfOrEmail(login);
+    }
+    
+    public Optional<Associado> findByCpf(String cpf) {
+        return associadoRepository.findByCpf(cpf);
+    }
+    
+    public Optional<Associado> findByEmail(String email) {
+        return associadoRepository.findByEmail(email);
+    }
+
+    public Associado buscarPorId(Long id) {
+        return associadoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Associado não encontrado"));
     }
 }
